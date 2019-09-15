@@ -42,4 +42,4 @@ Sistema de sensor para automação de fornos elétricos, baseado no controle de 
 
 @phncosta
 
-<i>My special thanks for the effort and support of each one!</i>
+<i>My special thanks for the effort and support of each one.</i>
