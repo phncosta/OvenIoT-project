@@ -6,7 +6,7 @@ Sistema de sensor para automação de fornos elétricos, baseado no controle de 
 
  <i> Projeto realizado em BandTec Digital School. </i>
 
-- Sensor system for automation of an eletric oven, based on temperature and humidity control.
+- Idealization of a sensor system to automation of eletric ovens, based on temperature and humidity control.
 
 
 
