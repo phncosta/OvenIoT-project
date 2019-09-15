@@ -10,7 +10,7 @@ Sistema de sensor para automação de fornos elétricos, baseado no controle de 
 
 <details>
  <summary><b>Technologies used (Click to expand!) </b></summary>
-  ## <i>Linguagens e tecnologias usadas</i>
+  ## <i>Linguagens e tecnologias utilizadas</i>
  
  
   <b>1.</b> JavaScript
