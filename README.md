@@ -8,6 +8,26 @@ Sistema de sensor para automação de fornos elétricos, baseado no controle de 
 
 - Idealization of a sensor system for automation of eletric ovens, based on temperature and humidity control.
 
+<details>
+ <summary><b>Technologies used (Click to expand!) </b></summary>
+  ## <i>Linguagens e tecnologias usadas</i>
+ 
+ 
+  <b>1.</b> JavaScript
+ 
+  <b>2.</b> HTML/CSS/Bootstrap
+  
+  <b>3.</b> SQL
+  
+  <b>4.</b> Node.js
+  
+  <b>5.</b> Arduino
+  
+  <b>6.</b> Microsoft Azure
+  
+  <b>7.</b> Git
+  
+</details>
 
 
 <b>Featuring:</b>
