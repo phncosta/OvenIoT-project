@@ -3,13 +3,14 @@
 <img align="right" width="150" height="100" src="https://i.imgur.com/uBzgaz4.png">
 
 Sistema de sensor para automação de fornos elétricos, baseado no controle de temperatura e umidade.
-  Um projeto em BandTec Digital School
+
+ <i> Um projeto em BandTec Digital School. </i>
 
 - Sensor system for automation of an eletric oven, based on temperature and humidity control.
 
-- Integrator Project on BandTec Digital School
+- <i>Integrator Project on BandTec Digital School</i>
 
-Featuring:
+<b>Featuring:</b>
 
 @Eduhkbr
 
