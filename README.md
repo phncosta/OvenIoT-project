@@ -1,10 +1,10 @@
 # OvenIoT-project
 
-<img align="right" width="150" height="100" src="https://i.imgur.com/uBzgaz4.png">
+<img align="right" width="200" height="100" src="https://i.imgur.com/uBzgaz4.png">
 
 Sistema de sensor para automação de fornos elétricos, baseado no controle de temperatura e umidade.
 
- <i> Um projeto em BandTec Digital School. </i>
+ <i> Projeto realizado em BandTec Digital School. </i>
 
 - Sensor system for automation of an eletric oven, based on temperature and humidity control.
 
