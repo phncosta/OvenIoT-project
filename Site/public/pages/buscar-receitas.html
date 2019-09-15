@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Receitas - OvenIOT</title>
+    <!-- icone na barra do navegador -->
+    <link rel="icon" type="imagem/png" href="../documentation/img/icon/microwave.png">
+
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="../documentation/css/main_style.css">
+    <link rel="stylesheet" href="../documentation/css/sidebar.css">
+    <link rel="stylesheet" href="../documentation/css/profile.css">
+
+    <!-- Importação do Bootstrap CSS -->
+    <link rel="stylesheet" href="../documentation/bootstrap/css/bootstrap.css">
+</head>
+
+<body class="text-dark bg-white">
+    <header>
+        <nav class="navbar navbar-expand navbar-dark navbar-bg fixed-top">
+            <a class="ml-3 my-1" href="dashboard.html">
+                <img src="../documentation/img/oveniot.png" width="130">
+            </a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown my-auto pr-2 border-right">
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../documentation/img/icon/notification.png" style="width: 25px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-notification p-0">
+                        <div class="text-center py-2">
+                            <b>Notificação</b>
+                        </div>
+                        <div class="list-group overflow-auto" style="height: 320px;">
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-danger mr-1">Perigo:</b> Sua receita pode queimar, desligue o forno!
+                                <div class="text-muted">2 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-warning mr-1">Atenção:</b> A receita está quase pronta!
+                                <div class="text-muted">4 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-success mr-1">Aviso:</b> Sua receita está sendo feita.
+                                <div class="text-muted">40 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-success mr-1">Aviso:</b> Seu forno está pré-aquecido, coloque sua receita!
+                                <div class="text-muted">50 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-primary mr-1">Aviso:</b> Seu forno está esquentando, aguarde pré-aquecer para seguir a receita.
+                                <div class="text-muted">1h</div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown my-auto ml-2">
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../documentation/img/icon/avatar.png" style="width: 30px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-profile overflow-auto p-0">
+                        <div class="text-white bg-warning p-3 rounded-top">
+                            <h5 id="nome_usuario">...</h5>
+                            <div class="ml-1">
+                                <span class="bg-success d-inline-block rounded-circle"></span> Cozinhando
+                            </div>
+                        </div>
+                        <a class="dropdown-item dropdown-item-perfil" href="profile.html">Perfil</a>
+                        <!-- <a class="dropdown-item" href="#">Minhas receitas</a> -->
+                        <a class="dropdown-item dropdown-item-perfil" href="../index.html">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="list-group list-group-flush text-warning">
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Principal</span>
+                <a href="dashboard.html" class="list-group-item list-group-item-action sidebar-item">Painel de Controle</a>
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Receitas</span>
+                <a href="buscar-receitas.html" class="list-group-item list-group-item-action sidebar-item">Buscar Receitas</a>
+                <a href="receitas.html" class="list-group-item list-group-item-action sidebar-item">Minhas Receitas</a>
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Usuario</span>
+                <a href="profile.html" class="list-group-item list-group-item-action sidebar-item">Configurações de Perfil</a>
+            </div>
+        </div>
+        <!-- Fim Sidebar -->
+
+        <!-- parte principal da pagina -->
+        <div id="page-content-wrapper">
+
+            <!-- control sidebar -->
+            <div class="position-fixed mt-4" style="z-index: 1">
+                <button class="btn btn-warning button-menu float-left d-lg-none" id="menu-toggle">
+                    <img src="../documentation/img/icon/arrow_right_dark.png" style="width: 25px">
+                </button>
+            </div>
+
+            <div class="container">
+
+                <h1 class="mt-3 text-center">Receitas</h1>
+                <hr class="my-4 mx-4">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-12">
+                        <form id="form_pesquisa" class="form-inline ml-3 mt-2" onsubmit="return pesquisar()">
+                            <input type="hidden" name="tipo" id="tipo">
+                            <input class="form-control form-control-sm mr-2 w-75" type="text" placeholder="Pesquisar..." name="pesquisa" id="pesquisa">
+                            <button id="btn_pesquisar" class="btn btn-warning btn-sm text-white">
+                                <img src="../documentation/img/icon/procurar.png" style="width: 20px">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- receitas -->
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="row my-4 justify-content-center" id="resultado">
+                        <div class="spinner-border text-warning mt-5" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- fim receitas -->
+            </div>
+        </div>
+        <!-- fim da parte principal da pagina -->
+
+        <!-- Modal -->
+        <div id="modais"></div>
+        <!-- fim Modal -->
+
+    </div>
+
+    <!-- Importação do JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Importação do Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <!-- Importação do Bootstrap JS -->
+    <script type="text/javascript" src="../documentation/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Importação do JS -->
+    <script type="text/javascript" src="../documentation/js/sidebar.js"></script>
+    <script type="text/javascript" src="../documentation/js/verificarAutenticacao.js"></script>
+
+    <script type="text/javascript">
+        verificarAutenticacao();
+
+        document.getElementById('nome_usuario').innerHTML = sessionStorage.nome;
+
+        listarReceitas();
+
+        function pesquisar() {
+            document.getElementById(`resultado`).innerHTML = `
+            <div class="row my-4 justify-content-center" id="resultado">
+                <div class="spinner-border text-warning mt-5" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>`;
+
+            fetch(`/receitas/tipo/${pesquisa.value}`, {
+                method: "GET"
+            }).then(function (response) {
+                
+                if (response.ok) {
+
+                    response.json().then(function (resposta) {
+
+                        console.log(` chegou do endpoint: ${JSON.stringify(resposta)}`);
+
+                        document.getElementById(`resultado`).innerHTML = `<div class="col-12 mb-3 text-center lead">Encontramos <b>${resposta.length}</b> receitas</div>`;
+                        for (const linha of resposta) {
+                            let conteudo_div = `
+                            <div class="col-lg-3 col-md-6">
+                                <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#modalReceita${linha.codReceita}">
+                                    <div class="card shadow-sm mb-3">
+                                        <div class="overflow-hidden" style="height: 240px;">
+                                            <img class="h-100" src="${linha.imagemReceita}">
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title border-bottom border-warning pb-2">${linha.nomeReceita}</h4>
+                                            <p class="card-text"><b>${linha.tipoReceita}</b></p>
+                                            <p class="card-text"><b>Tempo de preparo:</b><br>Em torno de ${linha.tempoReceita} minutos</p>
+                                            <p class="card-text text-center"><small class="text-muted">clique para ver mais</small></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>`;
+
+                            let conteudo_modal = `
+                            <div class="modal fade" id="modalReceita${linha.codReceita}" tabindex="-1" role="dialog" aria-labelledby="modalReceitaDoceLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header p-2 pb-3 border-0 bg-warning">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body p-0">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="overflow-hidden" style="height: 500px;">
+                                                        <img class="h-100 mb-3 rounded-bottom" src="${linha.imagemReceita}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="container my-3">
+                                                        <h2 class=" border-bottom border-warning pb-2">${linha.nomeReceita}</h2>
+                                                        <p>
+                                                            <b>Tempo de preparo:</b><br> Entorno de ${linha.tempoReceita} minutos
+                                                        </p>
+                                                        <p>
+                                                            <b>Temperatura:</b><br>
+                                                            <span class="text-danger">${linha.temperaturaReceita}ºC</span>
+                                                        </p>
+                                                        <p>
+                                                            <b>Descrição:</b><br>
+                                                            ${linha.descReceita}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal" onclick="acompanharReceita(${linha.imagemReceita}, ${linha.nomeReceita}, ${linha.tempoReceita}, ${linha.tipoReceita}, ${linha.temperaturaReceita}, ${linha.descReceita}
+                                            )">Acompanhar Receita</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+
+                            document.getElementById(`resultado`).innerHTML += conteudo_div;
+                            document.getElementById(`modais`).innerHTML += conteudo_modal;
+                        }
+                    });
+                } else {
+                    console.log('Erro de pesquisa!');
+                    document.getElementById(`resultado`).innerHTML = `<div class="col-12 mb-3 text-center lead">Nenhuma receita encontrada</div>`;
+                }
+            });
+            return false;
+        }
+
+        function listarReceitas(){
+            var i=0;
+
+            fetch(`/receitas/listar`, {
+                method: "GET"
+            }).then(function (response) {
+                
+                if (response.ok) {
+
+                    response.json().then(function (resposta) {
+
+                        console.log(` chegou do endpoint: ${JSON.stringify(resposta)}`);
+
+                       // resultado_doce.innerHTML = `Encontramos <b>${resposta.length}</b> receitas <br>`;
+                        document.getElementById(`resultado`).innerHTML = '';
+
+                        for (const linha of resposta) {
+                            i++;
+                            let conteudo_div = `
+                            <div class="col-lg-3 col-md-6">
+                                <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#modalReceita${linha.codReceita}">
+                                    <div class="card shadow-sm mb-3">
+                                        <div class="overflow-hidden" style="height: 240px;">
+                                            <img class="h-100" src="${linha.imagemReceita}">
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title border-bottom border-warning pb-2">${linha.nomeReceita}</h4>
+                                            <p class="card-text"><b>${linha.tipoReceita}</b></p>
+                                            <p class="card-text"><b>Tempo de preparo:</b><br>Em torno de ${linha.tempoReceita} minutos</p>
+                                            <p class="card-text text-center"><small class="text-muted">clique para ver mais</small></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>`;
+
+                            let conteudo_modal = `
+                            <div class="modal fade" id="modalReceita${linha.codReceita}" tabindex="-1" role="dialog" aria-labelledby="modalReceitaDoceLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header p-2 pb-3 border-0 bg-warning">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body p-0">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="overflow-hidden" style="height: 500px;">
+                                                        <img class="h-100 mb-3 rounded-bottom" src="${linha.imagemReceita}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="container my-3">
+                                                        <h2 class=" border-bottom border-warning pb-2">${linha.nomeReceita}</h2>
+                                                        <p>
+                                                            <b>Tempo de preparo:</b><br> Entorno de ${linha.tempoReceita} minutos
+                                                        </p>
+                                                        <p>
+                                                            <b>Temperatura:</b><br>
+                                                            <span class="text-danger">${linha.temperaturaReceita}ºC</span>
+                                                        </p>
+                                                        <p>
+                                                            <b>Descrição:</b><br>
+                                                            ${linha.descReceita}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal" onclick="acompanharReceita(
+                                                    '${linha.imagemReceita}', 
+                                                    '${linha.nomeReceita}', 
+                                                    ${linha.tempoReceita}, 
+                                                    '${linha.tipoReceita}', 
+                                                    ${linha.temperaturaReceita}
+                                                )">Acompanhar Receita</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+
+                            document.getElementById(`resultado`).innerHTML += conteudo_div;
+                            document.getElementById(`modais`).innerHTML += conteudo_modal;
+                            if (i==12) {
+                                break;
+                            }
+                        }
+                    });
+                } else {
+                    console.log('Erro de pesquisa!');
+                }
+            });
+            return false;
+        }
+    
+        function acompanharReceita(imagem, nome, tempo, tipo, temperatura) {
+            sessionStorage.receitaAcompanhada = `
+            <img class="card-img" src="${imagem}">
+            <div class="card-body text-left">
+                <h5 class="card-title border-bottom border-warning pb-2">${nome}</h5>
+                <p class="card-text">
+                    <b>Tipo:</b> <br>
+                    <span>${tipo}</span>
+                </p>
+                <p class="card-text">
+                    <b>Temperatura:</b> <br>
+                    <span class="text-danger">${temperatura}</span>°C
+                </p>
+                <p class="card-text">
+                    <b>Tempo:</b> <br>
+                    <span>${tempo} minutos</span>
+                </p>
+            </div>
+            `;
+            alert(`Agora você esta acompanhando a receita: ${nome}.`);
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+
+</html>

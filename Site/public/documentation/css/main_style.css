@@ -1,0 +1,106 @@
+/*CONFIGURAÇÕES DO BODY*/
+body{
+  background-color: #1C1C1C !important;
+  color: white !important;
+}
+
+
+
+/*CSS DO NAVBAR*/
+/*Altura da barra de navegação do site, ou cabeçalho, como quiser chamar*/
+header{
+  height: 80px;
+}
+/*Cor de fundo do navbar*/
+.navbar-bg{
+  background-color: black;
+  opacity: 0.96; /*deixa transparente*/
+}
+.dropdown-notification{
+  width: 280px;
+  font-size: 14px; 
+}
+.dropdown-profile{
+  min-width: 180px;
+  font-size: 14px;
+}
+.dropdown-profile h5{ font-size: 16px }
+.dropdown-profile div{ font-size: 13px }
+.dropdown-profile span{ 
+  height: 7px;
+  width: 7px;
+  margin-bottom: 2px;
+}
+
+/*CSS NO CAROUSEL*/
+/*definindo um tamanho de fonte para as legendas da img*/
+.carousel-caption{
+  font-size: 50px;
+}
+.carousel-caption div{
+  opacity: 0.5;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+/*CSS ADICIONAL PARA CARD*/
+/*Grande borda preta*/
+.border-black{
+  border: 0.6rem solid black !important;
+}
+/*Coloca uma sombra atras do texto*/
+.txt-shadow{
+  text-shadow: 1px 1px 1px black;
+}
+
+
+/*CSS ADICIONAL PARA BUTTONS*/
+.btn-black-yellow{
+  color: white !important;
+  background-color: black !important;
+}
+.btn-black-yellow:hover{
+  background-color: #ffc107 !important;
+}
+/*Só muda a cor do botão amarelo quando passa o mouse*/
+button.btn-outline-warning:hover{
+  color: white;
+}
+.button-menu{ border-radius: 0px 20px 20px 0px !important }
+
+
+/*CSS DA AREA SOBRE */
+.foto {
+  border-radius: 50%; /* borda da imagem em 50%, é o que transforma ela em um círculo! */
+  max-width: 20vh; /* tamanho máximo de largura das imagens, assim mesmo se elas forem muito grandes, se manterão proporcionais à 20/100 do tamanhod da tela do usuário */
+  min-height: 20vh; /* altura mínima das imagens - assim a gente faz elas ficarem todas do mesmo tamanho */
+}
+
+
+/*CSS EM IMAGEM*/
+/*Filtro que desfoca imagem*/
+.img-blur{
+  filter: blur(2px);
+}
+/*Aq define a altura da div e o comportamento da imagem de fundo da div no carousel*/
+.img-carousel{
+  height: 560px;
+  background-size: cover;
+  background-position: center;
+}
+
+/*CSS PARA TEXTO*/
+.text-shadow-carousel{
+  text-shadow: 1px 1px 4px black;
+}
+.text-carousel{
+  font-size: 60%;
+  font-weight: 1px;
+}
+
+/*CSS PARA O DROPDOWN*/
+.dropdown-item-perfil:hover{
+  background-color: #f8f9fa !important;
+  color: #ffc107 !important;
+}

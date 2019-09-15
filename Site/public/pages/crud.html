@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login e Cadastro - OvenIOT </title>
+    <link rel="icon" type="imagem/png" href="../documentation/img/icon/microwave.png">
+
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="../documentation/css/main_style.css">
+
+    <!-- Importação do Bootstrap CSS -->
+    <link rel="stylesheet" href="../documentation/bootstrap/css/bootstrap.css">
+
+    <!-- Colocando imagem de fundo -->
+    <style type="text/css">
+        body{
+            background-image: url(../documentation/img/wallpaper/utencilios_cozinha.jpg);
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-bg fixed-top">
+            <a class="ml-3 my-1" href="../index.html">
+                <img src="../documentation/img/oveniot.png" width="130">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html#projeto">Projeto</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html#produto">Produto</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="simulador.html">Simulador Financeiro</a>
+                    </li>
+                    <li class="nav-item ml-3 my-auto">
+                        <a class="btn btn-outline-warning btn-sm" href="../pages/crud.html">Login e Cadastro</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10">
+                <div class="card border-black p-3 my-5 text-center text-body shadow">
+
+                    <!-- Formulario de Login -->
+                    <div class="card-body" id="tela_login">
+                        <h2 class="card-title txt-shadow text-warning">Login</h2>
+                        <form class="text-left mx-md-5" id="form_login" method="post" onsubmit="return entrar()">
+                            <div class="form-group">
+                                <label for="campo_email">E-mail:</label>
+                                <input class="form-control" type="email" name="login" id="campo_email" placeholder="Digite seu e-mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="campo_senha">Senha:</label>
+                                <input class="form-control" type="password" name="senha" id="campo_senha" placeholder="Digite sua senha">
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-black-yellow btn-block shadow-sm mb-2" id="btn_entrar">Logar</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-black-yellow btn-block shadow-sm mb-2" type="button" onclick="exibir(tela_cadastro, tela_esqueci_senha, tela_login)">Cadastrar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <a class="card-link text-warning" href="#" onclick="exibir(tela_esqueci_senha, tela_cadastro, tela_login)">Esqueci minha senha</a>
+                        <div class="mt-2 text-danger" id="alert_login"></div>
+                        <div class="d-flex justify-content-center">
+                            <div id="spinner_login" class="spinner-border text-warning mt-2 d-none" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Cadastro -->
+                    <div class="card-body" id="tela_cadastro">
+                        <h2 class="card-title txt-shadow text-warning">Cadastro</h2>
+                        <form id="form_cadastro" class="text-left" method="post" onsubmit="return cadastrar()">
+                            <div class="form-group">
+                                <label for="campo_cad_email">E-mail:</label>
+                                <input class="form-control" name="email" type="email" id="campo_cad_email" placeholder="Digite seu e-mail" required onblur="validarEmail(campo_cad_email)">
+                                <div class="mt-2 text-danger" id="alert_email"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campo_cad_nome">Nome:</label>
+                                <input class="form-control" name="nome" type="text" id="campo_cad_nome" placeholder="Digite seu nome" required onblur="validarNome(campo_cad_nome)">
+                                <div class="mt-2 text-danger" id="alert_nome"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campo_cad_senha">Senha:</label>
+                                <input class="form-control" name="senha1" type="password" id="campo_cad_senha" placeholder="Digite sua senha" required onblur="validarSenha(campo_cad_senha)">
+                                <div class="mt-2 text-danger" id="alert_senha"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="campo_cad_conf_senha">Confirme sua senha:</label>
+                                <input class="form-control" name="senha2" type="password" id="campo_cad_conf_senha" placeholder="Confirme sua senha" required onblur="validarConfSenha(campo_cad_conf_senha)">
+                                <div class="mt-2 text-danger" id="alert_conf_senha"></div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="col-md-6">
+                                    <button id="btn_cadastrar" class="btn btn-black-yellow btn-block shadow-sm mb-2">Cadastrar</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-warning btn-block" type="button" onclick="exibir(tela_login, tela_esqueci_senha, tela_cadastro)">Voltar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-center">
+                            <div id="spinner_cadastro" class="spinner-border text-warning mt-2 d-none" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de recuperação de senha -->
+                    <div class="card-body" id="tela_esqueci_senha">
+                        <h2 class="card-title txt-shadow text-warning">Recuperar senha</h2>
+                        <form class="text-left">
+                            <p>Para recuperar sua senha informe seu e-mail cadastrado e uma nova senha.</p>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="campo_ps_email">E-mail:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="email" id="campo_ps_email" placeholder="Digite seu e-mail">
+                                    <div class="mt-2 text-danger" id="alert_ps_email"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" for="campo_ps_senha">Senha nova:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="password" id="campo_ps_senha" placeholder="Digite seu senha">
+                                    <div class="mt-2 text-danger" id="alert_ps_senha"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-black-yellow btn-block shadow-sm mb-2" type="button" onclick="esqueciSenha()">Trocar Senha</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-outline-warning btn-block" type="button" onclick="exibir(tela_login, tela_esqueci_senha, tela_cadastro)">Voltar</button>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-success text-center" id="alert_success"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Importação do JS -->
+    <script type="text/javascript" src="../documentation/js/config_login_cadastro.js"></script>
+    <script type="text/javascript" src="../documentation/js/validacao.js"></script>
+
+    <!-- Importação do Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../documentation/bootstrap/js/bootstrap.js"></script>
+    
+</body>
+
+</html>
+
+<script>
+
+verificarAutenticacao();
+
+function verificarAutenticacao() {
+    if (sessionStorage.nome != undefined) {
+        window.location.href = 'dashboard.html';
+    }
+}
+
+function entrar() {
+    aguardar();
+    //pega todos os campos que estão no formulário e transforma em json
+    var formulario = new URLSearchParams(new FormData(form_login));
+    //endpoint
+    fetch("/usuarios/entrar", {
+        method: "POST",
+        //é o que estamos mandando para o endpoint
+        body: formulario
+    }).then(function (response) {
+        
+        if (response.ok) {
+
+            response.json().then(function (resposta) {
+
+                sessionStorage.codigo = resposta.codUsuario;
+                sessionStorage.nome = resposta.nomeUsuario;
+                sessionStorage.email = resposta.emailUsuario;
+                sessionStorage.senha = resposta.senhaUsuario;
+                verificarAutenticacao();
+
+            });
+        } else {
+
+            console.log('Erro de login!');
+            finalizar_aguardar();
+        }
+    });
+
+    return false;
+}
+
+function aguardar() {
+    //desabilitar o botão
+    btn_entrar.disabled = true;
+    btn_cadastrar.disabled = true;
+    alert_login.innerHTML = '';
+    spinner_login.classList.remove("d-none");
+    spinner_login.classList.add("d-block");
+    spinner_cadastro.classList.remove("d-none");
+    spinner_cadastro.classList.add("d-block");
+}
+
+function finalizar_aguardar() {
+    //habilita o botão
+    btn_entrar.disabled = false;
+    alert_login.innerHTML = '*E-mail ou Senha incorretos!<br>Ou erro com a conexão da internet';
+    spinner_login.classList.remove("d-block");
+    spinner_login.classList.add("d-none");
+    spinner_cadastro.classList.remove("d-block");
+    spinner_cadastro.classList.add("d-none");
+}
+
+function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+                window.location.href='crud.html';
+            } else {
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                finalizar_aguardar();
+            }
+        });
+        return false;
+    }
+
+</script>

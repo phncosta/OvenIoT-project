@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<!-- O site deve ser feito no estilo OnePage, que consiste em todo o conteúdo em apenas uma página -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OvenIOT</title>
+    <link rel="icon" type="imagem/png" href="documentation/img/icon/microwave.png">
+
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="documentation/css/main_style.css">
+
+    <!-- Importação do Bootstrap CSS -->
+    <link rel="stylesheet" href="documentation/bootstrap/css/bootstrap.css">
+    <!-- Importando o chat bot -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=31a0ebd9-3891-406a-80c5-9de2ad4afa36">
+    </script>
+</head>
+
+<body>
+    <!-- Barra de navegação do site -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-bg fixed-top shadow">
+            <a class="ml-3 my-1" href="index.html">
+                <img src="documentation/img/oveniot.png" width="130">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="#projeto">Projeto</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="#produto">Produto</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="pages/simulador.html">Simulador Financeiro</a>
+                    </li>
+                    <li class="nav-item ml-3 my-auto">
+                        <a class="btn btn-outline-warning btn-sm" href="pages/crud.html">Login e Cadastro</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- TODAS AS AREAS SÃO DIVIDIDAS EM SEÇÕES QUE OCUPAM TODA A PÁGINA -->
+
+    <main>
+        <!-- Carousel do site -->
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-block img-carousel" style="background-image: url(documentation/img/wallpaper/massa.jpg)"></div>
+                    <div class="carousel-caption text-left text-shadow-carousel px-3">
+                        <div class="bg-dark w-100 h-100 position-absolute"></div>
+                        <p>Massas!</p>
+                        <p class="text-carousel font-weight-light">Faça massas com mais eficiência e economia.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block img-carousel" style="background-image: url(documentation/img/wallpaper/faca_cozinha.jpg)"></div>
+                    <div class="carousel-caption text-shadow-carousel px-3">
+                        <div class="bg-dark w-100 h-100 position-absolute"></div>
+                        <p>Maior praticidade</p>
+                        <p class="text-carousel font-weight-light">Descubra os vários benefícios da cozinha com IoT!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-block img-carousel" style="background-image: url(documentation/img/wallpaper/frango.jpg)"></div>
+                    <div class="carousel-caption text-right text-shadow-carousel px-3">
+                        <div class="bg-dark w-100 h-100 position-absolute"></div>
+                        <p>Carnes no forno</p>
+                        <p class="text-carousel font-weight-light">Sinta a precisão gerada através da retroalimentação de dados do nosso produto.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <!-- Area do projeto -->
+        <div class="container-fluid mt-5 text-center" id="projeto">
+            <h1 class="mb-1 font-weight-light text-warning">Já imaginou monitorar seu forno pela internet?</h1>
+            <div class="row pt-5">
+                <div class="col-md-4 col-12">
+                    <span data-toggle="popover" data-content="And here's some amazing content. It's very engaging. Right?">
+            <img class="img-fluid h-50 mb-3" src="documentation/img/icon/icon-fogo.png">
+          </span>
+                    <h3>Segurança</h3>
+                </div>
+                <div class="col-md-4 col-12">
+                    <img class="img-fluid h-50 mb-3" src="documentation/img/icon/icon-timer.png">
+                    <h3>Precisão</h3>
+                </div>
+                <div class="col-md-4 col-12">
+                    <img class="img-fluid h-50 mb-3" src="documentation/img/icon/icon-receitas.png">
+                    <h3>Repositório de receitas</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr class="mx-5 my-3 bg-light">
+
+        <!-- Area para o Produto -->
+        <div class="container my-5 text-center" id="produto">
+            <h1 class="mb-4 font-weight-light text-warning">Por você... do seu jeito!</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="img-fluid rounded" src="documentation/img/LLD.png">
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <p class="text-left font-weight-light p-3" style="line-height: 30px; font-size: 20px;">
+                        O OVENIOT é um forno ligado a internet. Um dispositivo a ser adquirido para casa inteligente do futuro, tornando mais prático o cotidiano do usuário através de um Sistema Web, onde é possível controlar o tempo de preparo das massas para assar, podendo
+                        ser controlado para acelerar ou desacelerar o processo na cozinha de acordo com as necessidades do usuário, que pode inclusive não estar em casa no momento de ligar ou desligar seu forno. Isso tudo na palma das suas mãos!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="mx-5 my-3 bg-light">
+
+        <!-- Area do sobre nós e dos funcionários-->
+        <div class="container mt-5 text-center" id="sobre">
+            <h1 class="font-weight-light text-warning">Sobre nós</h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-12 my-3">
+                    <img class="foto" src="documentation/img/membros/membro-eduardo.jpeg">
+                    <h3>Eduardo Kauan</h3>
+                    <p>
+                        eduardo.abreu@oveniot.zendesk.com
+                        <br>
+                        <img class="icon" src="documentation/img/icon/linkedin.jpg" style="width: 11%">linkedin.com/in/eduardo-kauan
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 my-3">
+                    <img class="foto" src="documentation/img/membros/membro-muniz.jpg">
+                    <h3>Felippe Muniz</h3>
+                    <p>
+                        felippe.lima@oveniot.zendesk.com
+                        <br>
+                        <img class="icon" src="documentation/img/icon/linkedin.jpg" style="width: 11%">linkedin.com/in/felippe-muniz
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 my-3">
+                    <img class="foto" src="documentation/img/membros/membro-marcelo.jpg">
+                    <h3>Marcelo Antony</h3>
+                    <p>
+                        marcelo.costa@oveniot.zendesk.com
+                        <br>
+                        <img class="icon" src="documentation/img/icon/linkedin.jpg" style="width: 11%">linkedin.com/in/marcelo-antony
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 my-3">
+                    <img class="foto" src="documentation/img/membros/membro-paulo.jpg">
+                    <h3>Paulo Costa</h3>
+                    <p>
+                        paulo.costa@oveniot.zendesk.com
+                        <br>
+                        <img class="icon" src="documentation/img/icon/linkedin.jpg" style="width: 11%">linkedin.com/in/paulo-costa
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 my-3">
+                    <img class="foto " src="documentation/img/membros/membro-vitoria.jpeg">
+                    <h3>Vitória Berniz</h3>
+                    <p>
+                        vitoria.berniz@oveniot.zendesk.com
+                        <br>
+                        <img class="icon" src="documentation/img/icon/linkedin.jpg" style="width: 11%">linkedin.com/in/vitória-berniz
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-dark py-3">
+        <div class="container text-center">
+            <span>Projeto Bandtec - 2019</span>
+            <br>
+            <span>Framework usado: 
+        <a class="text-white" href="https://getbootstrap.com/">Bootstrap</a></span>
+        </div>
+    </footer>
+
+    <!-- Importação do Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="documentation/bootstrap/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="documentation/bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>

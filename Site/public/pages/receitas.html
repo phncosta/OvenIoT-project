@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Minhas receitas - OvenIOT</title>
+    <!-- icone na barra do navegador -->
+    <link rel="icon" type="imagem/png" href="../documentation/img/icon/microwave.png">
+
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="../documentation/css/main_style.css">
+    <link rel="stylesheet" href="../documentation/css/sidebar.css">
+    <link rel="stylesheet" href="../documentation/css/profile.css">
+
+    <!-- Importação do Bootstrap CSS -->
+    <link rel="stylesheet" href="../documentation/bootstrap/css/bootstrap.css">
+</head>
+
+<body class="text-dark bg-white">
+    <header>
+        <nav class="navbar navbar-expand navbar-dark navbar-bg fixed-top">
+            <a class="ml-3 my-1" href="dashboard.html">
+                <img src="../documentation/img/oveniot.png" width="130">
+            </a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown my-auto pr-2 border-right">
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../documentation/img/icon/notification.png" style="width: 25px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-notification p-0">
+                        <div class="text-center py-2">
+                            <b>Notificação</b>
+                        </div>
+                        <div class="list-group overflow-auto" style="height: 320px;">
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-danger mr-1">Perigo:</b> Sua receita pode queimar, desligue o forno!
+                                <div class="text-muted">2 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-warning mr-1">Atenção:</b> A receita está quase pronta!
+                                <div class="text-muted">4 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-success mr-1">Aviso:</b> Sua receita está sendo feita.
+                                <div class="text-muted">40 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-success mr-1">Aviso:</b> Seu forno está pré-aquecido, coloque sua receita!
+                                <div class="text-muted">50 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-primary mr-1">Aviso:</b> Seu forno está esquentando, aguarde pré-aquecer para seguir a receita.
+                                <div class="text-muted">1h</div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown my-auto ml-2">
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../documentation/img/icon/avatar.png" style="width: 30px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-profile overflow-auto p-0">
+                        <div class="text-white bg-warning p-3 rounded-top">
+                            <h5 id="nome_usuario">...</h5>
+                            <div class="ml-1">
+                                <span class="bg-success d-inline-block rounded-circle"></span> Cozinhando
+                            </div>
+                        </div>
+                        <a class="dropdown-item dropdown-item-perfil" href="profile.html">Perfil</a>
+                        <a class="dropdown-item dropdown-item-perfil" onclick="logoff()">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="list-group list-group-flush text-warning">
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Principal</span>
+                <a href="dashboard.html" class="list-group-item list-group-item-action sidebar-item">Painel de
+                    Controle</a>
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Receitas</span>
+                <a href="buscar-receitas.html" class="list-group-item list-group-item-action sidebar-item">Buscar
+                    Receitas</a>
+                <a href="receitas.html" class="list-group-item list-group-item-action sidebar-item">Minhas Receitas</a>
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Usuario</span>
+                <a href="profile.html" class="list-group-item list-group-item-action sidebar-item">Configurações de
+                    Perfil</a>
+            </div>
+        </div>
+        <!-- Fim Sidebar -->
+
+        <!-- parte principal da pagina -->
+        <div id="page-content-wrapper">
+
+            <!-- control sidebar -->
+            <div class="position-fixed mt-4" style="z-index: 1">
+                <button class="btn btn-warning button-menu float-left d-lg-none" id="menu-toggle">
+                    <img src="../documentation/img/icon/arrow_right_dark.png" style="width: 25px">
+                </button>
+            </div>
+
+            <div class="container">
+
+                <h1 class="mt-3 text-center">Minhas receitas</h1>
+                <hr class="my-4 mx-4">
+
+                <button class="btn btn-warning btn-sm text-white mt-2" data-toggle="modal" data-target="#modalCriarReceita">Cria receita</button>
+                <!-- <nav>
+                    <form>
+                        <input type="hidden" name="tipo" id="tipo">
+                    </form>
+                    <div class="nav nav-tabs">
+                        <a class="nav-item nav-link text-warning active" id="nav-doce-tab" data-toggle="tab" href="#nav-doce" role="tab" aria-controls="nav-doce" aria-selected="true"><b>Doce</b></a>
+                        <a class="nav-item nav-link text-warning" id="nav-salgada-tab" data-toggle="tab" href="#nav-salgada" role="tab" aria-controls="nav-salgada" aria-selected="false"><b>Salgada</b></a>
+                    </div>
+                </nav>
+ -->
+                <!-- receitas -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- receitas doce -->
+                    <div class="tab-pane fade show active" id="nav-doce" role="tabpanel" aria-labelledby="nav-doce-tab">
+                        <div class="row my-4 justify-content-center" id="resultado">
+                            <div class="spinner-border text-warning mt-5" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fim receitas doce -->
+                    <!-- receitas salgada -->
+                    <!-- <div class="tab-pane fade" id="nav-salgada" role="tabpanel" aria-labelledby="nav-salgada-tab">
+                        <div class="row my-4" id="resultado_Salgado"></div>
+                    </div> -->
+                    <!-- fim receitas salgada -->
+                </div>
+                <!-- fim receitas -->
+            </div>
+        </div>
+        <!-- fim da parte principal da pagina -->
+
+        <!-- Modal -->
+        <div id="modais"></div>
+
+        <!-- editar receita -->
+        <div id="modais_editar_receita"></div>
+        <!-- fim editar receita -->
+
+        <!-- excluir receita -->
+        <div id="modais_excluir_receita"></div>
+        <!-- fim excluir receita -->
+
+        <!-- criar receita -->
+        <div class="modal fade" id="modalCriarReceita" tabindex="-1" role="dialog" aria-labelledby="modalCriarReceitaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <form id="form_cad_receita" method="post" onsubmit="return cadastrarReceita()">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCriarReceitaLabel">Criar Receita</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <input type="hidden" name="cd_usuario" id="cd_usuario">
+                                <div class="form-group">
+                                    <label for="campo_nome_receita">Nome:</label>
+                                    <input class="form-control" type="text" name="nome" id="campo_nome_receita" placeholder="Digite o nome da receita" required onblur="">
+                                    <div class="mt-2 text-danger" id="alert_nome_receita"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo_temperatura_receita">Temperatura:</label>
+                                    <input class="form-control w-50" type="number" name="temperatura" id="campo_temperatura_receita" placeholder="Digite a temperatura da receita" required onblur="">
+                                    <div class="mt-2 text-danger" id="alert_cad_temperatura"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo_tempo_receita">Tempo:</label><br>
+                                    <input class="form-control d-inline-block w-25" type="number" id="campo_tempo_receita" name="tempo" placeholder="Minutos de preparo" required onblur="">
+                                    <div class="mt-2 text-danger" id="alert_tempo_receita"></div>
+                                </div>
+                                <div class="form-group">
+                                    <p class="mb-1">Categoria:</p>
+                                    <div class="form-check form-check-inline ml-3">
+                                        <input class="form-check-input" type="radio" name="tipo" id="radioDoce" value="Doce">
+                                        <label class="form-check-label" for="radioDoce">Doce</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="tipo" id="radioSalgada" value="Salgado">
+                                        <label class="form-check-label" for="radioSalgada">Salgada</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo_desc_receita">Descrição:</label>
+                                    <textarea class="form-control" name="desc" id="campo_desc_receita" rows="5" placeholder="Descreva a receita aqui. Ingredientes e modo de preparo." required onblur=""></textarea>
+                                    <div class="mt-2 text-danger" id="alert_desc_receita"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo_img_receita">Link da imagem:</label>
+                                    <input class="form-control" type="text" name="img" id="campo_img_receita" placeholder="Cole o link da imagem da receita aqui..." onblur="">
+                                    <div class="mt-2 text-danger" id="alert_img_receita"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
+                            <button id="btn_cad_receita" class="btn btn-warning btn-sm">
+                                Criar Receita
+                                <span id="spinner_cad_receita" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- fim criar receita -->
+        
+        <!-- fim Modal -->
+
+    </div>
+
+    <!-- Importação do JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Importação do Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <!-- Importação do Bootstrap JS -->
+    <script type="text/javascript" src="../documentation/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Importação do JS -->
+    <script type="text/javascript" src="../documentation/js/sidebar.js"></script>
+    <script type="text/javascript" src="../documentation/js/validacao.js"></script>
+    <script type="text/javascript" src="../documentation/js/verificarAutenticacao.js"></script>
+
+    <script type="text/javascript">
+        cd_usuario.value = sessionStorage.codigo;
+        document.getElementById('nome_usuario').innerHTML = sessionStorage.nome;
+
+        verificarAutenticacao();
+        listarMinhasReceitas();
+
+        function cadastrarReceita() {
+            btn_cad_receita.disabled = true;
+            spinner_cad_receita.classList.remove('d-none');
+            var formulario = new URLSearchParams(new FormData(form_cad_receita));
+            fetch("/usuarios/cadastrarReceita", {
+                method: "POST",
+                body: formulario
+            }).then(function(response) {
+                if (response.ok) {
+                    window.location.href = 'receitas.html';
+                } else {
+                    console.log('Erro de cadastro!');
+                    response.text().then(function(resposta) {
+                        div_erro.innerHTML = resposta;
+                    });
+                    btn_cad_receita.disabled = false;
+                }
+            });
+            return false;
+        }
+
+        function listarMinhasReceitas(){
+
+            fetch(`/minhasReceitas/${sessionStorage.codigo}`, {
+                method: "GET"
+            }).then(function (response) {
+                
+                if (response.ok) {
+
+                    response.json().then(function (resposta) {
+
+                        console.log(` chegou do endpoint: ${JSON.stringify(resposta)}`);
+
+                        document.getElementById(`resultado`).innerHTML = '';
+
+                        for (const linha of resposta) {
+                            let conteudo_div = `
+                            <div class="col-lg-3 col-md-6">
+                                <a href="#" class="text-decoration-none text-dark" data-toggle="modal" data-target="#modalReceita${linha.codReceita}">
+                                    <div class="card shadow-sm mb-3">
+                                        <div class="overflow-hidden" style="height: 240px;">
+                                            <img class="h-100" src="${linha.imagemReceita}">
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title border-bottom border-warning pb-2">${linha.nomeReceita}</h4>
+                                            <p class="card-text"><b>${linha.tipoReceita}</b></p>
+                                            <p class="card-text"><b>Tempo de preparo:</b><br>Em torno de ${linha.tempoReceita} minutos</p>
+                                            <p class="card-text text-center"><small class="text-muted">clique para ver mais</small></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>`;
+
+                            let conteudo_modal = `
+                            <div class="modal fade" id="modalReceita${linha.codReceita}" tabindex="-1" role="dialog" aria-labelledby="modalReceitaDoceLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header p-2 pb-3 border-0 bg-warning">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body p-0">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="overflow-hidden" style="height: 500px;">
+                                                        <img class="h-100 mb-3 rounded-bottom" src="${linha.imagemReceita}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="container my-3">
+                                                        <h2 class=" border-bottom border-warning pb-2">${linha.nomeReceita}</h2>
+                                                        <p>
+                                                            <b>Tempo de preparo:</b><br> Entorno de ${linha.tempoReceita} minutos
+                                                        </p>
+                                                        <p>
+                                                            <b>Temperatura:</b><br>
+                                                            <span class="text-danger">${linha.temperaturaReceita}ºC</span>
+                                                        </p>
+                                                        <p>
+                                                            <b>Descrição:</b><br>
+                                                            ${linha.descReceita}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer p-2">
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalExcluirReceita${linha.codReceita}" data-dismiss="modal">Excluir Receita</button>
+                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEditarReceita${linha.codReceita}" data-dismiss="modal">Editar Receita</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+
+                            let conteudo_modal_editar = `
+                            <div class="modal fade" id="modalEditarReceita${linha.codReceita}" tabindex="-1" role="dialog" aria-labelledby="modalEditarReceitaLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+                                        <form id="form_edit_receita" method="post" onsubmit="return editarReceita()">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalEditarReceitaLabel">Editar Receita</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input type="hidden" name="codReceita" value="${linha.codReceita}">
+                                                        <input type="hidden" name="tipo" value="${linha.tipoReceita}">
+                                                        <div class="form-group">
+                                                            <label for="campo_nome_receita">Nome:</label>
+                                                            <input class="form-control" type="text" id="campo_nome_receita" name="nome" required onblur="" value="${linha.nomeReceita}">
+                                                            <div class="mt-2 text-danger" id="alert_nome_receita"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="campo_temperatura_receita">Temperatura:</label>
+                                                            <input class="form-control w-50" type="number" name="temperatura" id="campo_temperatura_receita" name="temperatura" required onblur="" value="${linha.temperaturaReceita}">
+                                                            <div class="mt-2 text-danger" id="alert_edit_temperatura"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="campo_tempo_receita">Tempo:</label>
+                                                            <input class="form-control d-inline-block w-25" type="number" id="campo_tempo_receita" name="tempo" name="tempo" required onblur="" value="${linha.tempoReceita}">
+                                                            <div class="mt-2 text-danger" id="alert_tempo_receita"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="campo_desc_receita">Descrição:</label>
+                                                            <textarea class="form-control" id="campo_desc_receita" rows="5" name="desc" required onblur="">${linha.descReceita}</textarea>
+                                                            <div class="mt-2 text-danger" id="alert_desc_receita"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="campo_img_receita">Link da imagem:</label>
+                                                            <input class="form-control" type="text" name="img" id="campo_img_receita" onblur="" value="${linha.imagemReceita}">
+                                                            <div class="mt-2 text-danger" id="alert_img_receita"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
+                                                <button id="btn_edit_receita" class="btn btn-warning btn-sm">
+                                                    Salvar Alterações
+                                                    <span id="spinner_edit_receita" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+
+                            let conteudo_modal_excluir = `
+                            <div class="modal fade" id="modalExcluirReceita${linha.codReceita}" tabindex="-1" role="dialog" aria-labelledby="modalExcluirReceitaLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalExcluirReceitaLabel">Excluir Receita</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Tem certeza que deseja excluir sua receita de ${linha.nomeReceita}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Não</button>
+                                            <button type="button" id="btn_excluir_receita" class="btn btn-warning btn-sm" onclick="excluirReceita(${linha.codReceita})">
+                                                Sim
+                                                <span id="spinner_excluir_receita" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+
+                            document.getElementById(`resultado`).innerHTML += conteudo_div;
+                            document.getElementById(`modais`).innerHTML += conteudo_modal;
+                            document.getElementById(`modais_editar_receita`).innerHTML += conteudo_modal_editar;
+                            document.getElementById(`modais_excluir_receita`).innerHTML += conteudo_modal_excluir;
+                        }
+                    });
+                } else {
+                    console.log('Erro de pesquisa!');
+                    document.getElementById(`resultado`).innerHTML = `<div class="col-12 mb-3 text-center lead">Nenhuma receita criada</div>`;
+                }
+            });
+            return false;
+        }
+
+        function editarReceita() {
+            document.getElementById('btn_edit_receita').disabled = true;
+            document.getElementById('spinner_edit_receita').classList.remove('d-none');
+            var formulario = new URLSearchParams(new FormData(form_edit_receita));
+            fetch("/receitas/editarReceita", {
+                method: "POST",
+                body: formulario
+            }).then(function(response) {
+                if (response.ok) {
+                    window.location.href = 'receitas.html';
+                } else {
+                    console.log('Erro de edição!');
+                }
+            });
+            return false;
+        }
+
+        function excluirReceita(codReceita) {
+            document.getElementById('btn_excluir_receita').disabled = true;
+            document.getElementById('spinner_excluir_receita').classList.remove('d-none');
+            fetch(`/excluirReceita/${codReceita}`, {
+                method: "GET",
+            });
+            window.location.reload();
+            return false;
+        }        
+    </script>
+</body>
+
+</html>

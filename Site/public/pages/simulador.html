@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simulador Financeiro - OvenIOT</title>
+    <link rel="icon" type="imagem/png" href="../documentation/img/icon/microwave.png">
+
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="../documentation/css/main_style.css">
+
+    <!-- Importação do Bootstrap CSS -->
+    <link rel="stylesheet" href="../documentation/bootstrap/css/bootstrap.css">
+
+    <!-- Colocando imagem de fundo -->
+    <style type="text/css">
+        body{
+            background-image: url(../documentation/img/wallpaper/pimentao.jpg);
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-bg fixed-top">
+            <a class="ml-3 my-1" href="../index.html">
+                <img src="../documentation/img/oveniot.png" width="130">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html#projeto">Projeto</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html#produto">Produto</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="../index.html#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item border-right px-2">
+                        <a class="nav-link" href="simulador.html">Simulador Financeiro</a>
+                    </li>
+                    <li class="nav-item ml-3 my-auto">
+                        <a class="btn btn-outline-warning btn-sm" href="../pages/crud.html">Login e Cadastro</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card border-black p-3 my-5 text-center text-body shadow">
+                    <div class="card-body">
+                        <h1 class="font-weight-light text-warning">Simulador Financeiro</h1>
+                        <hr class="mx-5">
+                        <form>
+                            <div class="form-group">
+                                <label for="tempo">Tempo gasto com algo no forno em minutos:</label>
+                                <input class="form-control" type="text" id="tempo" placeholder="Digite o tempo aqui">
+                            </div>
+                            <div class="form-group">
+                                <label for="precoBotijao">Preço que compra o gás:</label>
+                                <input class="form-control" type="text" id="precoBotijao" placeholder="Digite quanto gasta aqui">
+                            </div>
+                            <div class="form-group">
+                                <label for="botijao">Peso do botijão:</label>
+                                <Select class="form-control" id="botijao">
+                                    <option selected disabled> -- Selecione o peso do botijão --</option>
+                                    <option value="13">13 Kg</option>
+                                    <option value="20">20 Kg</option>
+                                    <option value="45">45 Kg</option>
+                                    <option value="90">90 Kg</option>
+                                </Select>
+                            </div>
+                            <button class="btn btn-black-yellow px-5 shadow-sm" type="button" onclick="calculo()">Calcular Valor</button>
+                        </form>
+                        <hr class="d-none mx-5" id="divisor">
+                        <div class="d-none bg-light rounded-lg lead p-md-5 p-1" id="frase">
+                            <div>
+                                Atualmente você gasta:<br>
+                                <div class="text-warning d-inline" id="mostrar1"></div> com o preparo de uma receita a gás<br>
+                                Com um forno eletrico você economiza todo esse dinheiro e só gasta aproximadamente:<br>
+                                <div class="text-warning d-inline" id="mostrar1_1"></div> com a receita
+                            </div>
+                            <div>
+                                E com nosso sensor monitorando o preparo,<br>
+                                você pode reduzir o tempo de preparo para aproximadamente:<div class="text-warning" id="mostrar2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Importação do JS -->
+    <script type="text/javascript" src="../documentation/js/simulador_financeiro.js"></script>
+
+    <!-- Importação do Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../documentation/bootstrap/js/bootstrap.js"></script>
+
+</body>
+
+</html>

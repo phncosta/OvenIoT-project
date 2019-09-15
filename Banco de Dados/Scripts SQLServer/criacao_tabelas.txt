@@ -1,0 +1,58 @@
+create database oveniot;
+use oveniot;
+
+create table TipoUsuario 
+(
+	codTipoUsuario int primary key identity(1,1),
+	tipoUsuario varchar(20)
+);
+
+create table Usuario 
+(
+	codUsuario int primary key identity(1,1),
+	nomeUsuario varchar(40) not null,
+	emailUsuario varchar(50) not null,
+	senhaUsuario varchar(130) not null,
+	codTipoUsuario int not null,
+	foreign key(codTipoUsuario) references TipoUsuario(codTipoUsuario)
+);
+
+create table UsuarioSensor 
+(
+	codSensor int primary key,
+	codUsuario int not null,
+	foreign key(codUsuario) references Usuario (codUsuario)
+);
+
+create table Eventos 
+(
+	codEventos int primary key identity(1,1),
+	temperaturaSensor float not null,
+	umidadeSensor float not null,
+	dataHora int,
+	codSensor int not null,
+	foreign key(codSensor) references UsuarioSensor(codSensor)
+);
+
+create table Receita 
+(
+	codReceita int primary key identity(1,1),
+	nomeReceita varchar(40) not null,
+	tempoReceita datetime not null,
+	tipoReceita varchar(10) not null,
+	descReceita varchar(1000),
+	codUsuario int not null,
+	foreign key(codUsuario) references Usuario(codUsuario)
+);
+
+create table TemperaturaUmidade 
+(
+	codTemperaturaUmidade int primary key identity(1,1),
+	tempMax float,
+	tempMin float,
+	temperatura float,
+	umidade float,
+	umidMin float,
+	codReceita int not null,
+	foreign key(codReceita) references Receita(codReceita)
+);

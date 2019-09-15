@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Perfil - OvenIOT</title>
+    <!-- icone na barra do navegador -->
+    <link rel="icon" type="imagem/png" href="../documentation/img/icon/microwave.png">
+
+    <!-- Importação do CSS -->
+    <link rel="stylesheet" href="../documentation/css/main_style.css">
+    <link rel="stylesheet" href="../documentation/css/sidebar.css">
+    <link rel="stylesheet" href="../documentation/css/profile.css">
+
+    <!-- Importação do Bootstrap CSS -->
+    <link rel="stylesheet" href="../documentation/bootstrap/css/bootstrap.css">
+</head>
+
+<body class="text-dark bg-white">
+    <header>
+        <nav class="navbar navbar-expand navbar-dark navbar-bg fixed-top">
+            <a class="ml-3 my-1" href="dashboard.html">
+                <img src="../documentation/img/oveniot.png" width="130">
+            </a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown my-auto pr-2 border-right">
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../documentation/img/icon/notification.png" style="width: 25px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-notification p-0">
+                        <div class="text-center py-2">
+                            <b>Notificação</b>
+                        </div>
+                        <div class="list-group overflow-auto" style="height: 320px;">
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-danger mr-1">Perigo:</b>
+                                Sua receita pode queimar, desligue o forno!
+                                <div class="text-muted">2 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-warning mr-1">Atenção:</b>
+                                A receita está quase pronta!
+                                <div class="text-muted">4 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-success mr-1">Aviso:</b>
+                                Sua receita está sendo feita.
+                                <div class="text-muted">40 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-success mr-1">Aviso:</b>
+                                Seu forno está pré-aquecido, coloque sua receita!
+                                <div class="text-muted">50 min</div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action rounded-0">
+                                <b class="text-primary mr-1">Aviso:</b>
+                                Seu forno está esquentando, aguarde pré-aquecer para seguir a receita.
+                                <div class="text-muted">1h</div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown my-auto ml-2">
+                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../documentation/img/icon/avatar.png" style="width: 30px">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-profile overflow-auto p-0">
+                        <div class="text-white bg-warning p-3 rounded-top">
+                            <h5 id="nome_usuario">...</h5>
+                            <div class="ml-1">
+                                <span class="bg-success d-inline-block rounded-circle"></span>
+                                Cozinhando
+                            </div>
+                        </div>
+                        <a class="dropdown-item dropdown-item-perfil" href="profile.html">Perfil</a>
+                        <!-- <a class="dropdown-item" href="#">Minhas receitas</a> -->
+                        <a class="dropdown-item dropdown-item-perfil" onclick="logoff()">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="list-group list-group-flush text-warning">
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Principal</span>
+                <a href="dashboard.html" class="list-group-item list-group-item-action sidebar-item">Painel de
+                    Controle</a>
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Receitas</span>
+                <a href="buscar-receitas.html" class="list-group-item list-group-item-action sidebar-item">Buscar
+                    Receitas</a>
+                <a href="receitas.html" class="list-group-item list-group-item-action sidebar-item">Minhas Receitas</a>
+                <span class="lead mx-3 mt-3 mb-1 p-1 border-bottom border-warning">Usuario</span>
+                <a href="profile.html" class="list-group-item list-group-item-action sidebar-item">Configurações de
+                    Perfil</a>
+            </div>
+        </div>
+        <!-- Fim Sidebar -->
+
+        <!-- parte principal da pagina -->
+        <div id="page-content-wrapper">
+
+            <!-- control sidebar -->
+            <div class="position-fixed mt-4" style="z-index: 1">
+                <button class="btn btn-warning button-menu float-left d-lg-none" id="menu-toggle">
+                    <img src="../documentation/img/icon/arrow_right_dark.png" style="width: 25px">
+                </button>
+            </div>
+
+            <div class="container">
+
+                <h1 class="mt-3 text-center">Perfil</h1>
+                <hr class="my-4 mx-4">
+
+                <div class="emp-profile">
+                    <div class="row">
+                        <!-- imagem de perfil -->
+                        <div class="col-md-4">
+                            <div class="profile-img mb-3">
+                                <img src="../documentation/img/icon/avatar.png" style="width:150px">
+                            </div>
+                        </div>
+                        <!-- fim imagem de perfil -->
+
+                        <!-- dados -->
+                        <div class="col-md-8">
+                            <div class="profile-head">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h5 id="nome_usuario1">...</h5>
+                                        <h6 class="text-warning mb-3">
+                                            Usuário Comum
+                                        </h6>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <button type="button" class="btn btn-warning rounded-pill profile-edit-btn mb-3"
+                                            data-toggle="modal" data-target="#modalEditarPerfil">Editar Perfil</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- navegação no perfil -->
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link text-warning active" id="home-tab" data-toggle="tab"
+                                                    href="#home" role="tab" aria-controls="home"
+                                                    aria-selected="true">Sobre</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-warning" id="profile-tab" data-toggle="tab"
+                                                    href="#profile" role="tab" aria-controls="profile"
+                                                    aria-selected="false">Receitas</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link text-warning" id="cad-tab" data-toggle="tab"
+                                                    href="#cad" role="tab" aria-controls="cad"
+                                                    aria-selected="false">Fornos</a>
+                                            </li>
+                                        </ul>
+                                        <!-- fim navegação no perfil -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fim dados -->
+                    </div>
+
+                    <!-- navegaçao do perfil -->
+                    <div class="row justify-content-end">
+                        <div class="col-md-8">
+                            <div class="tab-content profile-tab" id="myTabContent">
+                                <!-- sobre -->
+                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Código de Usuário:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p id="cod_usuario">...</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>E-mail:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p id="email_usuario">Email</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- receitas -->
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="card shadow-sm">
+                                        <b class="card-header border-0" style="font-size: 17px">Ultimas Receitas
+                                            Criadas</b>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>Nome da Receita</th>
+                                                        <th>Categoria</th>
+                                                        <th>Temperatura Média</th>
+                                                        <th>Tempo de Cozimento</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabela_receita">
+                                                    <tr>
+                                                        <td>...</td>
+                                                        <td>...</td>
+                                                        <td>...</td>
+                                                        <td>...</td>
+                                                        <td>...</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <a href="receitas.html" class="btn btn-light border m-3 ml-auto">Visualizar
+                                            todas</a>
+                                    </div>
+                                </div>
+                                <!-- forno -->
+                                <div class="tab-pane fade" id="cad" role="tabpanel" aria-labelledby="cad-tab">
+                                    <div class="card shadow-sm">
+                                        <b class="card-header border-0" tyle="font-size: 17px">Fornos</b>
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código do Forno</th>
+                                                        <th>Temperatura</th>
+                                                        <th>Umidade</th>
+                                                        <th>Data e Hora</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>524045</td>
+                                                        <td>180ºC</td>
+                                                        <td>25%</td>
+                                                        <td>01:12:56</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>0454556</td>
+                                                        <td>180ºC</td>
+                                                        <td>18%</td>
+                                                        <td>01:30:43</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button type="button" class="btn btn-warning m-3 ml-auto text-white"
+                                            data-toggle="modal" data-target="#modalCadastrarForno">Cadastrar novo
+                                            forno</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fim navegaçao do perfil -->
+                </div>
+            </div>
+        </div>
+        <!-- fim da parte principal da pagina -->
+    </div>
+    <!-- Modal -->
+    <!-- editar perfil -->
+    <div class="modal fade" id="modalEditarPerfil" tabindex="-1" role="dialog" aria-labelledby="modalEditarPerfilLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form id="form_editar" method="post" onsubmit="return editar()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarPerfilLabel">Editar Perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                                <input type="hidden" name="codUsuario" id="input_codUsuario">
+                                <div class="form-group">
+                                    <label for="campo_cad_nome">Nome:</label>
+                                    <input class="form-control" type="text" name="novo_nome" id="campo_cad_nome" required onblur="validarNome(campo_cad_nome)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo_cad_email">E-mail:</label>
+                                    <input class="form-control" type="email" id="campo_cad_email" disabled>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="campo_cad_senha">Nova senha:</label>
+                                    <input class="form-control" type="password" name="nova_senha" id="campo_cad_senha"
+                                        placeholder="Digite a nova senha" onblur="validarSenha(campo_cad_senha)">
+                                </div> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
+                        <button id="btn_editar" class="btn btn-warning btn-sm">
+                            Salvar Alterações
+                            <span id="spinner_editar" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- fim editar perfil -->
+
+    <!-- cadastrar forno -->
+    <div class="modal fade" id="modalCadastrarForno" tabindex="-1" role="dialog"
+        aria-labelledby="modalCadastrarFornoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="form_cad_forno" method="post" onsubmit="return cadastrarForno()">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCadastrarFornoLabel">Cadastar Forno</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="campo_cad_sensor">Codigo do sensor:</label>
+                                <input class="form-control" type="text" name="sensor" id="campo_cad_sensor" placeholder="Digite o codigo aqui" required onblur="">
+                                <div class="mt-2 text-danger" id="alert_nome"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancelar</button>
+                        <button id="btn_cad_sensor" class="btn btn-warning btn-sm">Cadastar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- fim cadastrar forno -->
+    <!-- fim Modal -->
+
+    <!-- Importação do JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <!-- Importação do Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <!-- Importação do Bootstrap JS -->
+    <script type="text/javascript" src="../documentation/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Importação do funcionamento da sidebar -->
+    <script type="text/javascript" src="../documentation/js/sidebar.js"></script>
+
+    <script type="text/javascript" src="../documentation/js/validacao.js"></script>
+    <script type="text/javascript" src="../documentation/js/verificarAutenticacao.js"></script>
+
+    <script type="text/javascript">
+        verificarAutenticacao();
+        listarMinhasReceitas();
+
+        document.getElementById('cod_usuario').innerHTML = sessionStorage.codigo;
+        input_codUsuario.value = sessionStorage.codigo;
+
+        document.getElementById('nome_usuario').innerHTML = sessionStorage.nome;
+        document.getElementById('nome_usuario1').innerHTML = sessionStorage.nome;
+        campo_cad_nome.value = sessionStorage.nome;
+
+        document.getElementById('email_usuario').innerHTML = sessionStorage.email;
+        campo_cad_email.value = sessionStorage.email;
+
+        function cadastrarForno() {
+            btn_cad_sensor.disabled = true;
+            var formulario = new URLSearchParams(new FormData(form_cad_forno));
+            fetch("/usuarios/cadastrarForno", {
+                method: "POST",
+                body: formulario
+            }).then(function (response) {
+                if (response.ok) {
+                    window.location.href='profile.html';
+                } else {
+                    console.log('Erro de cadastro!');
+                    response.text().then(function (resposta) {
+                        div_erro.innerHTML = resposta;
+                    });
+                    btn_cad_sensor.disabled = false;
+                }
+            });
+            return false;
+        }
+
+        function listarMinhasReceitas(){
+            var i = 0;
+
+            fetch(`/minhasReceitas/${sessionStorage.codigo}`, {
+                method: "GET"
+            }).then(function (response) {
+                
+                if (response.ok) {
+
+                    response.json().then(function (resposta) {
+
+                        console.log(`chegou do endpoint: ${JSON.stringify(resposta)}`);
+
+                        document.getElementById('tabela_receita').innerHTML = '';
+
+                        for (const linha of resposta) {
+                            i++;
+                            let conteudo_tabela = `<tr>
+                                                        <td>${linha.CodReceita}</td>
+                                                        <td>${linha.nomeReceita}</td>
+                                                        <td>${linha.tipoReceita}</td>
+                                                        <td>110ºC</td>
+                                                        <td>${linha.tempoReceita} minutos</td>
+                                                    </tr>`;
+                            document.getElementById('tabela_receita').innerHTML += conteudo_tabela;
+                            if (i==5) {
+                                break;
+                            }
+                        }
+                    });
+                } else {
+                    console.log('Erro de pesquisa!');
+                }
+            });
+            return false;
+        }
+
+        function editar() {
+            document.getElementById('btn_editar').disabled = true;
+            document.getElementById('spinner_editar').classList.remove('d-none');
+            var formulario = new URLSearchParams(new FormData(form_editar));
+            fetch("/usuarios/editar", {
+                method: "POST",
+                body: formulario
+            }).then(function(response) {
+                if (response.ok) {
+                    alert('Relogue para que as alterações sejam efetuadas.');
+                    window.location.href = 'profile.html';
+                } else {
+                    console.log('Erro de edição!');
+                }
+            });
+            return false;
+        }
+    </script>
+</body>
+
+</html>

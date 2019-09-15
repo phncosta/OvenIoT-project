@@ -1,0 +1,324 @@
+/*ATENÇÃO: A PÁGINA STYLE ESTÁ FOCADA NA BARRA DE NAVEGAÇÃO E NA RESPONSIVIDADE
+NÃO REALIZE ALTERAÇÕES SEM AVISO PREVIO AOS MEMBROS RESTANTES DO GRUPO
+PARA EVITAR A DESCONFIGURAÇÃO DO SITE E DIVERSOS PROBLEMAS DECORRENTES DE ALTERAÇÕES*/
+
+/* "Resetando" todas as margens para fazer a responsividade em todos os navegadores */
+*, html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, hr, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin:0; padding:0; border:0; background:transparent; overflow-x: hidden;
+}
+
+/* Configuração das listas da barra de navegação */
+.list-full, .list-full li,
+.list-auto, .list-auto li { width: 100%; float: left; display: block; position: relative; }
+.list-auto, .list-auto li { width: auto; }
+
+/* floats para posicionar na barra de navegação */
+.float-l { float: left; } /* Posiciona a logo a esquerda da barra de navegação */
+.float-r { float: right; } /* Posiciona a lista ao canto esquerdo da barra de navagação */
+
+  body {
+  background: hsla(0, 1%, 13%, 0.871);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-repeat: no-repeat;
+  font-family: Arial, Helvetica, sans-serif;
+
+
+  }
+  
+  /* Barra de navegação da index com responsividade */
+  header {
+    min-height: 60px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 1px solid #ccc;
+    background: #000000de;
+    z-index: 2;
+    
+  }
+  /* detalhes das letras h1 dentro do header, da tag a e das listas
+     lembrando que só funcionam dentro da header por serem tags "filhas" dela */
+  header h1 {
+    padding: 10px 0 0 10px;
+  }
+  
+  header h1 a {
+    color: #333;
+  }
+  
+  header ul {
+    padding: 15px 10px 0 0;
+  }
+  
+  header li {
+    border-left: 1px solid #ccc;
+  }
+  
+  header li:first-child {
+    border: none;
+  }
+  
+  header li a {
+    display: block;
+    padding: 0 10px;
+    color: white;
+    font-size: 16px;
+    line-height: 30px;
+    text-decoration: none;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+  }
+  
+  header li a:hover {
+    color: #333;
+  }
+  /* fim das configurações do header e suas tags filhas */
+
+  
+  input#control-nav {
+    visibility: hidden; /* esconder checkbox */
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+  }
+
+  /* Configurações de responsividade, configurações da lista ao atingir um tamanho de página, parte estética e animações, tanto da lista quanto do "botão" para abrir a lista.
+     A causa das animações é a diminuição da página do navegador ou visualização em dispositivos com a tela pequena. */
+  @media screen and (max-width: 767px) {
+    header nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 250px;
+      border-left: 1px solid #ccc;
+      background: #fff;
+      overflow-x: auto;
+      z-index: 2;
+      -webkit-transition: all 500ms ease;
+      transition: all 500ms ease;
+      -webkit-transform: translate(100%, 0);
+      -ms-transform: translate(100%, 0);
+      transform: translate(100%, 0);
+    }
+  
+    header ul.list-auto {
+      padding: 0;
+    }
+  
+    header ul.list-auto li {
+      width: 100%;
+      border: solid #ccc;
+      border-width: 0 0 1px;
+    }
+  
+    header li a {
+      padding: 15px 10px;
+    }
+  
+    header li a:hover {
+      background-color: #ccc;
+    }
+  
+    .control-nav {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      display: block;
+      width: 30px;
+      padding: 5px 0;
+      border: solid #333;
+      border-width: 3px 0;
+      z-index: 2;
+      cursor: pointer;
+    }
+  
+    .control-nav:before {
+      content: "";
+      display: block;
+      height: 3px;
+      background: #333;
+    }
+  
+    .control-nav-close {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      z-index: 1;
+      background: rgba(0,0,0,0.4);
+      -webkit-transition: all 500ms ease;
+      transition: all 500ms ease;
+      -webkit-transform: translate(100%, 0);
+      -ms-transform: translate(100%, 0);
+      transform: translate(100%, 0);
+    }
+  
+    input#control-nav {
+      display: block;
+    }
+  
+    input#control-nav:focus ~ .control-nav {
+      border-color: #000;
+      box-shadow: 0px 0px 9px rgba(0,0,0,0.3);
+    }
+  
+    input#control-nav:focus ~ .control-nav:before {
+      background: #000;
+    }
+  
+    input#control-nav:checked ~ nav,
+    input#control-nav:checked ~ .control-nav-close {
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      transform: translate(0, 0);
+    }
+  
+    header+section {
+      padding-top: 80px;
+    }
+  
+  @media screen and (max-width: 480px) {
+    header h1 {
+      font-size: 20px;
+      line-height: 40px;
+    }
+  }
+}
+
+
+
+/* OBS1.0:CÓDIGO DO SIMULADOR, MANTER INALTERADO*/
+/*OBS2.0:CÓDIGO REUTILIZADO PARA O LOGIN E CADASTRO, MANTER INALTERADO*/
+
+.item2 { grid-area: menu; padding: 40px}
+.item3 { grid-area: main;}
+.item4 { grid-area: right; padding: 10px;}
+
+/*fundo preto do */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'main main main right right right'
+    'main main main right right right'
+    'main main main menu menu menu'
+    'main main main menu menu menu';
+  grid-gap: 10px;
+  padding: 10px;
+  margin: 10%;
+  background: #000000de;
+}
+
+.grid-container > div {
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px 20px;
+}
+
+/*Configurações de estilo do botão*/
+.btc{
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+/*muda a cor do botão ao passar o mouse por cima*/
+.btc:hover{
+  opacity: 0.8;
+  background-color: orange;
+  color: black;
+
+}
+
+
+
+.inp, select {
+width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+/* Personalização dos botões de envio */
+input[type="button"]{
+    width: 30%!important; /* tamanho*/
+    cursor: pointer;  /* tipo do mouse ao posicionar encima do botão */
+    background: rgb(44, 56, 55); /* cor de fundo doss botões */
+    color: #fff; /* cor da letra */
+    font-size: 20px;  /* tamanho da letra, sem responsividade */
+    border: 1px solid #fff; /* tamanho da borda dos botões, tipo solido e a cor */
+    text-shadow: 0 1px 1px #333; /* Sombra do texto do botões */
+
+    transition: all 0.2s linear; /* tempo de transição entre a cor do botão para a outra cor ao passar o mouse por cima */
+}
+
+input[type="button"]:hover{
+  background: hsla(0, 1%, 13%, 0.871); /* Cor do botão apos passar o mouse por cima */
+}
+
+.containerLC {
+  display: ruby-base-container;
+  padding: 10px;
+  margin: 9% 25%;
+  border-radius: 10px;
+  background: #000000de;
+}
+.containerLC > div {
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btcLC{
+  width: 30%;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/*muda a cor do botão ao passar o mouse por cima*/
+.btcLC:hover{
+  opacity: 0.8;
+  background-color: orange;
+  color: black;
+}
+
+.inpLC, select {
+  width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
