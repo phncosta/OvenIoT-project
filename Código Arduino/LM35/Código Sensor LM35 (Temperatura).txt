@@ -1,0 +1,17 @@
+int pinoSensor = 5; // Saido do sensor (porta) A5
+int valorLido = 0; //Variavel auxiliar
+float temperatura = 0; // Variavel que armazena a temperatura lida
+
+void setup(){
+Serial.begin(9600);//inicia a comunicaçao serial a 9600 bauds
+Serial.println("Temperatura");//nomeia a coluna
+}
+
+void loop(){
+  valorLido = analogRead(pinoSensor);//Leitura analogica da porta
+  temperatura = (valorLido * 0.00488); //5 volts 1023 = 0,0048 precisao do A/D
+  temperatura = temperatura * 100;//converte milivolts para celsius
+  Serial.println(temperatura);
+  delay(1000);
+}
+

@@ -1,0 +1,17 @@
+~~~~ Tutorial Pro Código ~~~~
+
+PASSOS:
+
+1º: Colocar o sensor DHT11 na Protoboard;
+2º: Colocar o 5V (VCC) no primeiro pino localizado a esquerda;
+3º: Colocar o Lógico a direita do 5V;
+4º: Colocar o GND no ultimo pino a direita;
+5º: Baixar a library do DHT11;
+6º: Baixar a library do Adafruit_Sensor;
+7º: Colocar o conteúdo da pasta baixada do DHT11 em uma pasta chamada DHT dentro da pasta do Arduino/libraries;
+8º: Colocar o arquivo Adafruit_Sensor.u dentro do diretório Arduino/libraries/DHT/;
+9º: Abrir a IDE do Arduino;
+10º: Colocar o código;
+11º: Compilar e carregar para o Arduino;
+12º: Abrir o Plotter Serial (CTRL+SHIFT+L) para ver se está funcionando;
+13º: Abrir o Monitor Serial (CTRL+SHIFT+M) para ver os valores.
