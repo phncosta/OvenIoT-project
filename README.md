@@ -2,11 +2,11 @@
 
 <img align="center" width="200" height="100" src="https://i.imgur.com/uBzgaz4.png">
 
-Sistema de sensor para automação de fornos elétricos, baseado no controle de temperatura e umidade.
+Sistema de sensor para automação de fornos elétricos, baseado no controle de temperatura e umidade, com funcionalidades por monitoramento web.
 
  <i> Projeto realizado em BandTec Digital School © 1ºSem-2019. </i>
 
-- Idealization of a sensor system for automation of eletric ovens, based on temperature and humidity control.
+- Idealization of a sensor system for automation of eletric ovens, based on temperature and humidity control with monitoring web of it's functions.
 
 <details>
  <summary><b>Technologies used (Click to expand!) </b></summary>
