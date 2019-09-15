@@ -1,4 +1,4 @@
-# Project OvenIoT
+# Projeto OvenIoT
 
 <img align="center" width="200" height="100" src="https://i.imgur.com/uBzgaz4.png">
 
